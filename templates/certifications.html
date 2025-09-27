@@ -1,0 +1,35 @@
+
+{% extends "base.html" %}
+{% block title %}Certifications{% endblock %}
+
+{% block content %}
+<section class="container mx-auto px-6 py-12 bg-gray-900 min-h-screen rounded-2xl shadow-lg">
+    <h1 class="text-4xl font-extrabold text-white mb-10 text-center tracking-wide">My Certifications</h1>
+    <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {% for cert in certificates %}
+        <li class="bg-gray-800 p-6 rounded-2xl shadow-xl flex items-center space-x-6 hover:bg-gray-700 transition">
+            {% if "AWS" in cert.name %}
+                <span class="text-yellow-400 text-5xl"><i class="fa-brands fa-aws"></i></span>
+            {% elif "Cisco" in cert.name %}
+                <span class="text-blue-400 text-5xl">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/Cisco_logo_blue_2016.svg" alt="Cisco Logo" class="h-12 w-auto" style="filter: drop-shadow(0 0 2px #3b82f6);">
+                </span>
+            {% elif "Linux" in cert.name %}
+                <span class="text-green-400 text-5xl"><i class="fa-brands fa-linux"></i></span>
+            {% else %}
+                <span class="text-cyan-400 text-5xl"><i class="fa-solid fa-certificate"></i></span>
+            {% endif %}
+            <div>
+                <p class="text-2xl font-bold text-white">{{ cert.name }}</p>
+                <p class="text-gray-400 mt-2">Issued by: <span class="font-semibold text-cyan-300">{{ cert.issuer }}</span></p>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+</section>
+<style>
+    body {
+        background-color: #18181b;
+    }
+</style>
+{% endblock %}
